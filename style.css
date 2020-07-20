@@ -171,6 +171,6 @@ main
     body
     {
         margin: auto;
-        width:400px;
+        width:400; 
     }
 }
