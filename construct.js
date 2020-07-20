@@ -48,7 +48,7 @@ export default
             <button id="btn-create" class="btn" type="submit">Submit</button></div>
         </form>
     </header>
-    <div id="error-containter" ${this.hide(store.error)}>${store.errorMessage}</div>`;
+    <div id="error-container" ${this.hide(store.error)}>${store.errorMessage}</div>`;
     },
     
     //Constructing a row of stars based on the supplied rating.    
