@@ -5,7 +5,7 @@ function main()
 {
     
     store.init(); 
-    //api.postBookmark({"title":"Bill's web site", "url":"http://www.google.com", "desc":"Me", "rating":5});
+    
 
 
 
