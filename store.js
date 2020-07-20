@@ -1,6 +1,6 @@
-import construct from "/construct.js";
-import api from "/api.js";
-import events from "/events.js";
+import construct from "./construct.js";
+import api from "./api.js";
+import events from "./events.js";
 export default  {
     bookmarks: [
       {

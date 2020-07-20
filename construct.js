@@ -1,4 +1,4 @@
-import store from "/store.js";
+import store from "./store.js";
 export default 
 {
     //This module is for methods that construct html and objects

@@ -1,6 +1,5 @@
-import store from "/store.js";
-import api from "/api.js"
-import construct from "/construct.js";
+import store from "./store.js";
+
 function main()
 {
     

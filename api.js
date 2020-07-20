@@ -1,5 +1,5 @@
-import store from "/store.js";
-import construct from "/construct.js";
+import store from "./store.js";
+import construct from "./construct.js";
 export default {
     bookmarksUrl:"https://thinkful-list-api.herokuapp.com/V/bookmarks/",
     
