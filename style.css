@@ -166,3 +166,11 @@ main
     margin-top: 5px;
     background-color:rgb(184, 94, 121);
 }
+@media all and (min-width: 600px)
+{
+    body
+    {
+        margin: auto;
+        width:400px;
+    }
+}
