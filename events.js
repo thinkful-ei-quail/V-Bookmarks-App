@@ -48,8 +48,8 @@ export default {
             let currentID = store.getID(e);
             let bookmark = store.findBookmarkByID(currentID);
             bookmark.expanded = !bookmark.expanded;
-            console.log(store);
-            console.log($("#bookmarks-container"));
+            //console.log(store);
+            //console.log($("#bookmarks-container"));
             store.render();
             
         })    
@@ -88,7 +88,7 @@ export default {
         $(".star-btn").on("click",function(e){
             e.preventDefault();
             store.ratingSelector = $(e.currentTarget).attr("value");
-            console.log(store.ratingSelector);
+            //console.log(store.ratingSelector);
             store.render();
         });
     }
