@@ -55,7 +55,7 @@ export default  {
             case "main":
             {
                 //Generate main page
-                $('body').html(construct.mainPage());
+                $('main').html(construct.mainPage());
                 events.addNewBookmarkBtn();
                 events.bookmarkBtn();
                 events.filterSelect();
@@ -67,7 +67,7 @@ export default  {
             case "add-bookmark":
             {
                 //Load page
-                $('body').html(construct.submitPage());
+                $('main').html(construct.submitPage());
                 events.ratingSelectorBtn();
                 events.cancelBtn();
                 events.createBtn();

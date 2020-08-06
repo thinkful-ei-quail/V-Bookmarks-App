@@ -8,22 +8,23 @@ export default
         return `<header>
         <h1>Bookmark App</h1>
         <form action="">
-            <button id="btn-new">+ New 🔖</button>
-            <select name="select-filter" id="select-filter">
-                <option value="0" ${this.defaultSelected(0)}>Filter By:</option>
-                <option value="1" ${this.defaultSelected(1)}>★☆☆☆☆</option>
-                <option value="2" ${this.defaultSelected(2)}>★★☆☆☆</option>
-                <option value="3" ${this.defaultSelected(3)}>★★★☆☆</option>
-                <option value="4" ${this.defaultSelected(4)}>★★★★☆</option>
-                <option value="5" ${this.defaultSelected(5)}>★★★★★</option>
-            </select>
+            <button aria-label="Add new bookmark." id="btn-new">+ New 🔖</button>
+            <select name="select-filter" id="select-filter" aria-label="Rating Filter">
+                <option aria-label="Filter Option Show All" value="0" ${this.defaultSelected(0)}>Filter By:</option>
+                <option aria-label="Filter Option Show one star and higher" value="1" ${this.defaultSelected(1)}>★☆☆☆☆</option>
+                <option aria-label="Filter Option Show two stars and higher" value="2" ${this.defaultSelected(2)}>★★☆☆☆</option>
+                <option aria-label="Filter Option Show three stars and higher" value="3" ${this.defaultSelected(3)}>★★★☆☆</option>
+                <option aria-label="Filter Option Show four stars and higher" value="4" ${this.defaultSelected(4)}>★★★★☆</option>
+                <option aria-label="Filter Option Show only five star ratings" value="5" ${this.defaultSelected(5)}>★★★★★</option>
+        u   </select>
         </form>
     </header>
-    <main>
-        <div id="bookmarks-container">
+    <section>
+        <ul id="bookmarks-container">
             ${store.getBookmarks()}
-        </div>
-    </main>`;
+        </ul>
+    </section>
+    <div id="error-container" ${this.hide(store.error)}>${store.errorMessage}</div>`;
     },
     submitPage:function()
     {
@@ -31,7 +32,7 @@ export default
         <h1>Bookmark App</h1>
         <form id="input-bookmark" action="">
             <label class="add-bookmarks-label" for="url">Add New Bookmark:</label>
-            <input class="add-bookmarks-input" name="url" id="url" type="url" value="${store.newBookmark.url}" placeholder="http://example.com"></input>
+            <input class="add-bookmarks-input" aria-label="url" name="url" id="url" type="url" value="${store.newBookmark.url}" placeholder="http://example.com"></input>
             <div id="info-container">
                 <div id="rating-selector">
 
@@ -41,11 +42,13 @@ export default
 
                 </div>
             
-            <input class="add-bookmarks-input" name="title" id="title" type="text" value="${store.newBookmark.title}" placeholder="Enter a name:"></input>
-            <textarea id="addbookmark-desc" class="add-bookmarks-input"  type="text" placeholder="Description Text.">${store.newBookmark.desc}</textarea>
+            <input class="add-bookmarks-input" aria-label="bookmark title" name="title" id="title" type="text" value="${store.newBookmark.title}" placeholder="Enter a name:"></input>
+            <textarea id="addbookmark-desc" aria-label="bookmark description" class="add-bookmarks-input"  type="text" placeholder="Description Text.">${store.newBookmark.desc}</textarea>
             </div>   
-            <div id="btn-container"><button id="btn-cancel" class="btn" type="button">Cancel</button>
-            <button id="btn-create" class="btn" type="submit">Submit</button></div>
+            <div id="btn-container">
+                <button id="btn-cancel" aria-label="Cancel the create bookmark menu" class="btn" type="button">Cancel</button>
+                <button id="btn-create" aria-label="submit and create bookmark" class="btn" type="submit">Submit</button>
+            </div>
         </form>
     </header>
     <div id="error-container" ${this.hide(store.error)}>${store.errorMessage}</div>`;
@@ -77,11 +80,11 @@ export default
             
             if(i<rating)
             {
-                stars += `<button class="star-btn" value="${i+1}">★</button>`;
+                stars += `<button class="star-btn" value="${i+1}" aria-label="${i+1} star button" >★</button>`;
             }
             else
             {
-                stars += `<button class="star-btn" value="${i+1}">☆</button>`;
+                stars += `<button class="star-btn" value="${i+1}" aria-label="${i+1} star button">☆</button>`;
             }
             
         }
@@ -96,14 +99,15 @@ export default
         if(bookmarkObj.rating >= store.filter)
         {
             return `
-            <div id="${bookmarkObj.id}" class="bookmark">
+            <li id="${bookmarkObj.id}" class="bookmark">
                 <button><div><p class="title">${bookmarkObj.title}</p></div><div>  ${this.expandButtons(bookmarkObj)}  </div></button>
                 
-            </div>
-            <span class="expanded-view" ${this.hide(bookmarkObj.expanded)}>
-                    <button class="visit-site btn" value="${bookmarkObj.url}">Visit Site</button>
-                    <p>${bookmarkObj.desc}</p>
-                </span>
+            </li>
+            
+            <li class="expanded-view" ${this.hide(bookmarkObj.expanded)}>
+                <button class="visit-site btn" value="${bookmarkObj.url}">Visit Site</button>
+                <p>${bookmarkObj.desc}</p>
+            </li>
         `;
         }
         else

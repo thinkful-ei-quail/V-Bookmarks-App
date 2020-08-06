@@ -28,13 +28,44 @@ export default {
                 //error handler
                 
             }
+        }).catch(e => {
+            
+            store.errorMessage = `${e.message}: Check your connection.`;
+            store.error = true;
+            store.render();
         });
     },
     getBookmarks:function()
     {    
-        fetch(this.bookmarksUrl)
+        /*fetch(this.bookmarksUrl)
             .then(resp => resp.json())
-            .then(jsonResp => store.updateBookmarks(jsonResp));
+            .then(jsonResp => store.updateBookmarks(jsonResp));*/
+
+        fetch(this.bookmarksUrl)
+            .then(resp => {
+                if(resp.ok)
+                {
+                    resp.json().then(jsonResp => store.updateBookmarks(jsonResp))
+                    store.error = false;
+                }
+                else
+                {
+                    resp.json().then(jsonError => {
+                        
+                        store.errorMessage = jsonError.message;
+                        store.error = true;
+                        console.log(store.errorMessage);
+                        store.render();
+
+                    })
+
+                }
+            }).catch(e => {
+            
+                store.errorMessage = `${e.message}: Check your connection.`;
+                store.error = true;
+                store.render();
+            });
     },
     deleteBookmark:function(id)
     {
@@ -48,9 +79,20 @@ export default {
             }
             else
             {
-                console.log(resp);
+                //console.log(resp);
+                resp.json().then(function(jsonError){
+                    store.errorMessage = jsonError.message;
+                    store.error = true;
+                    console.log(store.errorMessage);
+                    store.render();
+                });
                 //error handler
             }
+        }).catch(e => {
+            
+            store.errorMessage = `${e.message}: Check your connection.`;
+            store.error = true;
+            store.render();
         });
     }
 }
