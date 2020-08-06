@@ -103,7 +103,6 @@ export default
                 <button><div><p class="title">${bookmarkObj.title}</p></div><div>  ${this.expandButtons(bookmarkObj)}  </div></button>
                 
             </li>
-            
             <li class="expanded-view" ${this.hide(bookmarkObj.expanded)}>
                 <button class="visit-site btn" value="${bookmarkObj.url}">Visit Site</button>
                 <p>${bookmarkObj.desc}</p>
