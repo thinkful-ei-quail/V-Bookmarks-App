@@ -100,11 +100,11 @@ export default
         {
             return `
             <li id="${bookmarkObj.id}" class="bookmark">
-                <button><div><p class="title">${bookmarkObj.title}</p></div><div>  ${this.expandButtons(bookmarkObj)}  </div></button>
+                <button  aria-label="Click to expand" ><div><p class="title">${bookmarkObj.title}</p></div><div>  ${this.expandButtons(bookmarkObj)}  </div></button>
                 
             </li>
             <li class="expanded-view" ${this.hide(bookmarkObj.expanded)}>
-                <button class="visit-site btn" value="${bookmarkObj.url}">Visit Site</button>
+                <button aria-label="Go to website" class="visit-site btn" value="${bookmarkObj.url}">Visit Site</button>
                 <p>${bookmarkObj.desc}</p>
             </li>
         `;
